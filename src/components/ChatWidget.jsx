@@ -62,7 +62,7 @@ const ChatWidget = () => {
       {isOpen && (
         <div className="chat-window">
           <div className="chat-header">
-            <span>☕ Chat Café Aroma</span>
+            <span> Chat Cota 90 Café</span>
           </div>
           <div className="chat-messages">
             {messages.map((msg, index) => (

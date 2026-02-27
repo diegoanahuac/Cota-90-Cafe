@@ -57,7 +57,7 @@
       "price": "$350",
       "harvest": "Diciembre – Marzo",
       "certification": ["Rainforest Alliance"],
-      "img": "https://images.unsplash.com/photo-1587734195503-904fca47e0e9?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/13806420/pexels-photo-13806420.jpeg"
     },
     {
       "id": 4,
@@ -77,7 +77,7 @@
       "price": "$420",
       "harvest": "Octubre – Diciembre",
       "certification": [],
-      "img": "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/14385408/pexels-photo-14385408.jpeg"
     },
     {
       "id": 5,
@@ -97,7 +97,7 @@
       "price": "$280",
       "harvest": "Mayo – Septiembre",
       "certification": ["UTZ"],
-      "img": "https://images.unsplash.com/photo-1621555470436-d36e9683bae5?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/9396632/pexels-photo-9396632.jpeg"
     },
     {
       "id": 6,
@@ -217,7 +217,7 @@
       "price": "$300",
       "harvest": "Junio – Septiembre",
       "certification": ["Orgánico", "Fair Trade"],
-      "img": "https://images.unsplash.com/photo-1461988625982-7e46a099bf4f?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/1419944/pexels-photo-1419944.jpeg"
     },
     {
       "id": 12,
@@ -237,7 +237,7 @@
       "price": "$880",
       "harvest": "Noviembre – Enero",
       "certification": [],
-      "img": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/4424672/pexels-photo-4424672.jpeg"
     },
     {
       "id": 13,
@@ -257,7 +257,7 @@
       "price": "$370",
       "harvest": "Junio – Diciembre",
       "certification": [],
-      "img": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/3737640/pexels-photo-3737640.jpeg"
     },
     {
       "id": 14,
@@ -297,7 +297,7 @@
       "price": "$280",
       "harvest": "Noviembre – Febrero",
       "certification": ["Orgánico", "Comercio Justo"],
-      "img": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop"
+      "img": "https://images.pexels.com/photos/1252195/pexels-photo-1252195.jpeg"
     },
     {
       "id": 16,
