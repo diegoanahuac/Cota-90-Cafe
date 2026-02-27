@@ -26,7 +26,7 @@ const ContactForm = () => {
 
   return (
     <section id="contacto" className="contact-section">
-      <h2 className="section-title">📧 Contáctanos</h2>
+      <h2 className="section-title"> Contáctanos</h2>
       <p className="section-subtitle">
         ¿Preguntas sobre nuestros granos, pedidos al mayoreo o suscripciones?
         Escríbenos y te responderemos pronto.
@@ -34,7 +34,7 @@ const ContactForm = () => {
 
       {submitted && (
         <div className="success-message">
-          ✅ ¡Gracias! Tu mensaje ha sido recibido. Te contactaremos pronto.
+          ¡Gracias! Tu mensaje ha sido recibido. Te contactaremos pronto.
         </div>
       )}
 
@@ -93,7 +93,7 @@ const ContactForm = () => {
           ></textarea>
         </div>
         <button type="submit" className="btn btn-send">
-          📩 Enviar Mensaje
+           Enviar Mensaje
         </button>
       </form>
     </section>

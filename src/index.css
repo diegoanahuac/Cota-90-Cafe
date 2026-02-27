@@ -9,8 +9,11 @@
   
   html,
   body {
-    background: #1a0e0a url('https://images.unsplash.com/photo-1447933601403-56dc6715e204?w=1920&q=80')
-      no-repeat center center/cover;
+    background-color: #1a0e0a;
+    background-image: url('https://images.unsplash.com/photo-1447933601403-56dc6715e204?w=1920&q=80');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
     color: #fff;
@@ -28,8 +31,8 @@
   }
   
   .container {
-    max-width: 1100px;
-    margin: auto;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
   }
   
@@ -75,13 +78,19 @@
      HEADER
      =========================== */
   .header {
-    min-height: 220px;
+    min-height: 200px;
     flex-direction: column;
-    padding: 30px 0;
+    padding: 20px 0;
   }
   
   .header-content {
     text-align: center;
+  }
+  
+  .header-content img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
   }
   
   .logo-text {
@@ -147,18 +156,18 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     margin: 15px 0;
   }
   
   .btn-filter {
-    padding: 8px 18px;
+    padding: 6px 14px;
     border: 1px solid #d4a574;
     background-color: transparent;
     color: #d4a574;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 0.95em;
+    font-size: 0.85em;
     transition: all 0.3s;
   }
   
@@ -174,30 +183,15 @@
   .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.2rem;
     margin-bottom: 40px;
   }
   
   .card {
     cursor: pointer;
     background-color: transparent;
-    height: 380px;
+    height: 320px;
     perspective: 1000px;
-  }
-  
-  .card h1 {
-    font-size: 18px;
-    border-bottom: 1px #d4a574 solid;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
-    color: #d4a574;
-  }
-  
-  .card img {
-    width: 100%;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 8px;
   }
   
   .card-inner {
@@ -215,66 +209,111 @@
   .card-front,
   .card-back {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
   }
   
   .card-front {
-    position: relative;
+    z-index: 2;
+  }
+  
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .card-name-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    padding: 40px 12px 12px;
+    text-align: center;
+  }
+  
+  .card-name-overlay h2 {
+    font-size: 0.95em;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  
+  .card-name-overlay .card-origin-small {
+    font-size: 0.75em;
+    color: #d4a574;
   }
   
   .card-price-tag {
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     right: 10px;
     background-color: rgba(139, 94, 60, 0.9);
     color: #fff;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
   
   .card-back {
-    background-color: rgba(30, 18, 10, 0.97);
+    background-color: rgba(26, 14, 10, 0.97);
     color: white;
-    padding: 15px;
+    padding: 14px;
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
+    z-index: 1;
   }
   
-  .card li {
+  .card-back h3 {
+    font-size: 0.95em;
+    border-bottom: 1px #d4a574 solid;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    color: #d4a574;
+  }
+  
+  .card-back ul {
     list-style: none;
-    padding-bottom: 5px;
-    font-size: 0.8em;
-    line-height: 1.4;
+    padding: 0;
+    margin: 0;
   }
   
-  .card li strong {
+  .card-back li {
+    padding-bottom: 3px;
+    font-size: 0.72em;
+    line-height: 1.5;
+  }
+  
+  .card-back li strong {
     color: #d4a574;
   }
   
   .certifications {
-    margin-top: 8px;
+    margin-top: 6px;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 4px;
   }
   
   .cert-badge {
     background-color: rgba(46, 125, 50, 0.3);
     border: 1px solid #2e7d32;
     color: #a5d6a7;
-    padding: 2px 8px;
+    padding: 2px 7px;
     border-radius: 12px;
-    font-size: 0.7em;
+    font-size: 0.65em;
   }
   
   /* ===========================
@@ -509,42 +548,163 @@
   }
   
   /* ===========================
-     RESPONSIVE
+     RESPONSIVE – TABLET
      =========================== */
-  @media (max-width: 800px) {
+  @media (max-width: 1024px) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .card {
+      height: 280px;
+    }
+  }
+  
+  /* ===========================
+     RESPONSIVE – TABLET SMALL
+     =========================== */
+  @media (max-width: 768px) {
     .cards {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  
+    .card {
+      height: 260px;
     }
   
     .logo-text {
       font-size: 2.2em;
     }
   
+    .header-content img {
+      max-width: 200px;
+    }
+  
+    .section-title {
+      font-size: 1.6em;
+    }
+  
     .chat-window {
       width: 290px;
       height: 400px;
     }
+  
+    .contact-section {
+      padding: 25px 20px;
+    }
   }
   
-  @media (max-width: 500px) {
-    .cards {
-      grid-template-columns: 1fr;
+  /* ===========================
+     RESPONSIVE – MÓVIL
+     =========================== */
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 12px;
     }
   
-    .card img {
-      width: 100%;
-      height: 300px;
-      object-fit: contain;
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+    }
+  
+    .card {
+      height: 220px;
+    }
+  
+    .card-name-overlay h2 {
+      font-size: 0.8em;
+    }
+  
+    .card-name-overlay .card-origin-small {
+      font-size: 0.65em;
+    }
+  
+    .card-price-tag {
+      font-size: 0.65em;
+      padding: 3px 7px;
+      top: 6px;
+      right: 6px;
+    }
+  
+    .card-back {
+      padding: 10px;
+    }
+  
+    .card-back h3 {
+      font-size: 0.85em;
+    }
+  
+    .card-back li {
+      font-size: 0.65em;
+      padding-bottom: 2px;
+    }
+  
+    .cert-badge {
+      font-size: 0.6em;
+    }
+  
+    .header {
+      min-height: 150px;
+      padding: 15px 0;
+    }
+  
+    .header-content img {
+      max-width: 160px;
+    }
+  
+    .logo-text {
+      font-size: 1.8em;
+    }
+  
+    .tagline {
+      font-size: 0.9em;
     }
   
     .nav {
-      flex-direction: column;
       gap: 10px;
+    }
+  
+    .nav a {
+      font-size: 0.9em;
+      padding: 6px 12px;
+    }
+  
+    .section-title {
+      font-size: 1.4em;
+      margin: 25px 0 8px;
+    }
+  
+    .section-subtitle {
+      font-size: 0.85em;
+    }
+  
+    .filter-buttons {
+      gap: 6px;
+    }
+  
+    .btn-filter {
+      padding: 5px 10px;
+      font-size: 0.75em;
     }
   
     .chat-window {
       width: 260px;
       height: 380px;
       right: -10px;
+    }
+  
+    .chat-toggle {
+      width: 50px;
+      height: 50px;
+      font-size: 1.3em;
+    }
+  
+    .footer {
+      padding: 20px 0;
+    }
+  
+    .footer-links {
+      gap: 12px;
     }
   }

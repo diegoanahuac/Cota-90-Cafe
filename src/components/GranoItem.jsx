@@ -6,12 +6,19 @@ const GranoItem = ({ item }) => {
   return (
     <div className="card">
       <div className="card-inner">
+        {/* FRENTE */}
         <div className="card-front">
           <img src={item.img} alt={item.name} />
           <div className="card-price-tag">{item.price} · {item.weight}</div>
+          <div className="card-name-overlay">
+            <h2>{item.name}</h2>
+            <span className="card-origin-small">{item.origin}</span>
+          </div>
         </div>
+
+        {/* REVERSO */}
         <div className="card-back">
-          <h1>{item.name}</h1>
+          <h3>{item.name}</h3>
           <ul>
             <li><strong>Origen:</strong> {item.origin}</li>
             <li><strong>Región:</strong> {item.region}</li>
