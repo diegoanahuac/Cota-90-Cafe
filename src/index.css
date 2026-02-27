@@ -1,8 +1,5 @@
-/* ===========================
-   RESET & GLOBALES
-   =========================== */
+/* RESET & GLOBALES */
 
-   
    * {
     box-sizing: border-box;
     margin: 0;
@@ -44,9 +41,7 @@
     justify-content: center;
   }
   
-  /* ===========================
-     BOTONES
-     =========================== */
+  /* BOTONES*/
   .btn {
     display: inline-block;
     color: #fff;
@@ -76,9 +71,7 @@
     background-color: #a67c52;
   }
   
-  /* ===========================
-     HEADER
-     =========================== */
+  /* HEADER */
   .header {
     min-height: 200px;
     flex-direction: column;
@@ -128,9 +121,7 @@
     color: #1a0e0a;
   }
   
-  /* ===========================
-     SECCIONES
-     =========================== */
+  /* SECCIONES */
   .section-title {
     text-align: center;
     font-size: 2em;
@@ -146,9 +137,7 @@
     font-size: 1em;
   }
   
-  /* ===========================
-     FILTROS POR ORIGEN
-     =========================== */
+  /* FILTROS POR ORIGEN */
   .filter-section {
     text-align: center;
     margin-bottom: 10px;
@@ -179,9 +168,7 @@
     color: #1a0e0a;
   }
   
-  /* ===========================
-     CARDS – GRANOS (flip 3D)
-     =========================== */
+  /* CARDS – GRANOS (flip 3D) */
   .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -318,9 +305,7 @@
     font-size: 0.65em;
   }
   
-  /* ===========================
-     SPINNER
-     =========================== */
+  /* SPINNER */
   .spinner-container {
     text-align: center;
     padding: 60px 0;
@@ -336,9 +321,7 @@
     100% { transform: rotate(360deg); }
   }
   
-  /* ===========================
-     FORMULARIO DE CONTACTO
-     =========================== */
+  /* FORMULARIO DE CONTACTO */
   .contact-section {
     background-color: rgba(30, 18, 10, 0.9);
     border-radius: 12px;
@@ -404,9 +387,7 @@
     font-size: 1.05em;
   }
   
-  /* ===========================
-     CHAT WIDGET
-     =========================== */
+  /* CHAT WIDGET */
   .chat-widget {
     position: fixed;
     bottom: 25px;
@@ -526,9 +507,7 @@
     background-color: #a67c52;
   }
   
-  /* ===========================
-     FOOTER
-     =========================== */
+  /* FOOTER */
   .footer {
     text-align: center;
     padding: 30px 0;
@@ -549,9 +528,7 @@
     font-size: 0.95em;
   }
 
-  /* ===========================
-   CAROUSEL
-   =========================== */
+  /* CAROUSEL */
 .carousel {
   position: relative;
   width: 100%;
@@ -677,9 +654,7 @@
   background-color: rgba(212, 165, 116, 0.5);
 }
   
-  /* ===========================
-     RESPONSIVE – TABLET
-     =========================== */
+  /* RESPONSIVE – TABLET*/
   @media (max-width: 1024px) {
     .cards {
       grid-template-columns: repeat(3, 1fr);
@@ -698,9 +673,7 @@
     }
   }
   
-  /* ===========================
-     RESPONSIVE – TABLET SMALL
-     =========================== */
+  /* RESPONSIVE – TABLET SMALL */
   @media (max-width: 768px) {
     .cards {
       grid-template-columns: repeat(2, 1fr);
@@ -751,9 +724,7 @@
     }
   }
   
-  /* ===========================
-     RESPONSIVE – MÓVIL
-     =========================== */
+  /*  RESPONSIVE – MÓVIL */
   @media (max-width: 480px) {
     .container {
       padding: 0 12px;
