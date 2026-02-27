@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from './components/Header'
+import Carousel from './components/Carousel'
 import GranosGrid from './components/GranosGrid'
 import ContactForm from './components/ContactForm'
 import ChatWidget from './components/ChatWidget'
@@ -34,6 +35,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
+      <Carousel />
 
       <section className="filter-section">
         <h2 className="section-title">Nuestros Granos</h2>
