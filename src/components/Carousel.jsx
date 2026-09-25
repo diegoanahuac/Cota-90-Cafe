@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import SlideNavigator from '../utils/SlideNavigator'
 
 const slides = [
   {
@@ -29,19 +30,20 @@ const slides = [
 ]
 
 const Carousel = () => {
-  const [current, setCurrent] = useState(0)
+  const [navigator] = useState(() => new SlideNavigator(slides.length))
+  const [current, setCurrent] = useState(navigator.current)
 
   // Autoplay cada 5 segundos
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length)
+      setCurrent(navigator.next())
     }, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, [navigator])
 
-  const goTo = (index) => setCurrent(index)
-  const prev = () => setCurrent((current - 1 + slides.length) % slides.length)
-  const next = () => setCurrent((current + 1) % slides.length)
+  const goTo = (index) => setCurrent(navigator.goTo(index))
+  const prev = () => setCurrent(navigator.prev())
+  const next = () => setCurrent(navigator.next())
 
   return (
     <section className="carousel">

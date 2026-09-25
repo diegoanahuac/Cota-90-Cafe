@@ -5,32 +5,25 @@ import Carousel from './components/Carousel'
 import GranosGrid from './components/GranosGrid'
 import ContactForm from './components/ContactForm'
 import ChatWidget from './components/ChatWidget'
+import { TODOS, getRegions, filterByRegion, fetchGranos } from './utils/granos'
 
 const App = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [filter, setFilter] = useState('Todos')
+  const [filter, setFilter] = useState(TODOS)
 
   useEffect(() => {
     const fetchItems = async () => {
-      const resultado = await axios.get('/granos.json')
-      console.log(resultado.data)
-      setItems(resultado.data)
+      const granos = await fetchGranos(axios)
+      setItems(granos)
       setIsLoading(false)
     }
 
     fetchItems()
   }, [])
 
-  const regions = [
-    'Todos',
-    ...new Set(items.map((item) => item.origin.split('–')[0].trim())),
-  ]
-
-  const filteredItems =
-    filter === 'Todos'
-      ? items
-      : items.filter((item) => item.origin.split('–')[0].trim() === filter)
+  const regions = getRegions(items)
+  const filteredItems = filterByRegion(items, filter)
 
   return (
     <div className="container">

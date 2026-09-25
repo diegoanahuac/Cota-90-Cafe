@@ -1,23 +1,5 @@
 import React, { useState } from 'react'
-
-const predefinedResponses = {
-  horario:
-    'Atendemos pedidos en línea 24/7. Nuestro tostador despacha de Lunes a Viernes de 8:00am a 6:00pm.',
-  envio:
-    'Enviamos a todo México. Envío gratis en compras mayores a $500. Tiempo de entrega: 3-5 días hábiles.',
-  granos:
-    'Tenemos 16 orígenes disponibles: Colombia, Etiopía, Guatemala, Kenia, Brasil, Panamá, México (Chiapas, Veracruz, Oaxaca), Costa Rica, Rwanda, Perú, Yemen, Indonesia, Honduras y nuestro Blend de la Casa.',
-  tueste:
-    'Tostamos artesanalmente en lotes pequeños. Ofrecemos tueste ligero, medio, medio-oscuro y oscuro. Todos nuestros granos se tuestan máximo 5 días antes del envío.',
-  mayoreo:
-    '¡Claro! Ofrecemos precios especiales para cafeterías, restaurantes y oficinas. Llena el formulario de contacto con el asunto "Pedido al mayoreo".',
-  suscripcion:
-    'Nuestra suscripción mensual te envía granos frescos cada mes. Puedes elegir el origen, tueste y frecuencia. Escríbenos por el formulario de contacto.',
-  molienda:
-    'Vendemos en grano entero para máxima frescura. Si necesitas molido, indícalo en tu pedido y lo molemos al momento según tu método de preparación.',
-  default:
-    '¡Gracias por tu mensaje! Esto es un chat de demostración. Para pedidos y consultas detalladas, usa nuestro formulario de contacto. Prueba: granos, envio, tueste, mayoreo, suscripcion, molienda u horario.',
-}
+import { getChatResponse } from '../utils/chat'
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -34,15 +16,7 @@ const ChatWidget = () => {
     if (!input.trim()) return
 
     const userMessage = { sender: 'user', text: input }
-    const keyword = input.toLowerCase().trim()
-
-    let botResponse = predefinedResponses.default
-    for (const key of Object.keys(predefinedResponses)) {
-      if (keyword.includes(key)) {
-        botResponse = predefinedResponses[key]
-        break
-      }
-    }
+    const botResponse = getChatResponse(input)
 
     const botMessage = { sender: 'bot', text: botResponse }
     setMessages((prev) => [...prev, userMessage, botMessage])

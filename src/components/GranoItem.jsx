@@ -1,7 +1,8 @@
 import React from 'react'
+import { getIntensityBeans } from '../utils/granos'
 
 const GranoItem = ({ item }) => {
-  const intensityBeans = '🔥'.repeat(item.intensity) + '⚪'.repeat(5 - item.intensity)
+  const intensityBeans = getIntensityBeans(item.intensity)
 
   return (
     <div className="card">
