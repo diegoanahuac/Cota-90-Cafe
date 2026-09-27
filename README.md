@@ -1,142 +1,143 @@
-# Cota 90 Café – HW06: Unit Testing con Jest y patrón AAA
+# Cota 90 Café – HW06: Unit Testing with Jest and the AAA Pattern
 
-Tienda en línea de café de especialidad hecha con **React + Vite**. En esta
-entrega se agregan pruebas unitarias con **Jest**, siguiendo lo visto en la
-presentación de clase *"Unit Testing and AAA pattern"* (Unidad 4, temas 4.1 y
-4.2; archivo `SQU4C12_Unit_Testing_AAA_Pattern.pdf`).
+An online store for specialty coffee built with **React + Vite**. This
+assignment adds unit tests with **Jest**, following the class presentation
+*"Unit Testing and AAA pattern"* (Unit 4, topics 4.1 and 4.2; file
+`SQU4C12_Unit_Testing_AAA_Pattern.pdf`).
 
-Las referencias a diapositivas de este documento usan el número de página del PDF.
+Slide references in this document use the PDF page number.
 
 ---
 
-## 1. ¿Qué es una prueba unitaria? (diap. 4–6)
+## 1. What is a unit test? (slides 4–6)
 
-La presentación define la prueba unitaria como una técnica que valida **una
-porción pequeña del código** (un método, clase, módulo o función), que debe ser
-**automática**, dar retroalimentación **rápida y precisa** y ser **independiente
-de servicios o bases de datos** (diap. 6).
+The presentation defines unit testing as a technique that validates **a small
+portion of the source code** (one method, class, module or function). A unit
+test must be **automatic**, give **fast and accurate** feedback, and be
+**independent of services or data stores** (slide 6).
 
-La **pirámide de pruebas** de Mike Cohn (diap. 4) indica que las pruebas
-unitarias son la base: deben ser las más numerosas, y las pruebas de más alto
-nivel, cada vez menos. La tabla de Capers Jones (diap. 5) muestra que las
-pruebas unitarias detectan en promedio un 40 % de los defectos.
+Mike Cohn's **testing pyramid** (slide 4) puts unit tests at the base: they
+should be the most numerous, with fewer tests at each higher level. The Capers
+Jones table (slide 5) shows that unit testing detects about 40% of defects on
+average.
 
-**Cómo se aplica en este proyecto:** la lógica estaba dentro de los componentes
-de React, que dependen del navegador y de la red. Para poder probarla como
-"una porción pequeña" e independiente, se movió a funciones de JavaScript en
+**How it applies to this project:** the logic lived inside React components,
+which depend on the browser and the network. To test it as a "small portion"
+that is independent, it was moved into plain JavaScript functions in
 `src/utils/`:
 
-| Sistema bajo prueba (SUT) | Archivo | Sacado de |
+| System under test (SUT) | File | Extracted from |
 | --- | --- | --- |
 | `fetchGranos(httpClient)` | `src/utils/granos.js` | `App.jsx` |
 | `filterByRegion(items, filter)` | `src/utils/granos.js` | `App.jsx` |
 | `class SlideNavigator` | `src/utils/SlideNavigator.js` | `Carousel.jsx` |
 
-## 2. Características de una buena prueba unitaria (diap. 7–8)
+## 2. Characteristics of a good unit test (slides 7–8)
 
-| Característica (PDF) | Cómo se cumple aquí |
+| Characteristic (PDF) | How it is met here |
 | --- | --- |
-| **Fast** (milisegundos) | Las pruebas corren en menos de 2 segundos en total. |
-| **Isolated** (sin API ni base de datos) | `fetchGranos` recibe un cliente HTTP falso; nunca se hace una petición real. |
-| **Deterministic** (mismo resultado siempre) | Los datos de prueba son fijos; no hay fechas, azar ni red. |
-| **Repeatable** | El catálogo se vuelve a crear antes de cada prueba con `beforeEach`. |
-| **Self-checking** (PASS o FAIL) | Cada prueba termina en `expect(...)`, así que Jest decide solo si pasa o falla. |
-| **Timely** | Se escribieron junto con la extracción de cada función. |
+| **Fast** (milliseconds) | All tests run in under 2 seconds in total. |
+| **Isolated** (no API or database) | `fetchGranos` receives a fake HTTP client; no real request is ever made. |
+| **Deterministic** (same result every time) | Test data is fixed; there are no dates, randomness or network calls. |
+| **Repeatable** | The catalog is rebuilt before each test with `beforeEach`. |
+| **Self-checking** (PASS or FAIL) | Every test ends in `expect(...)`, so Jest decides on its own whether it passes or fails. |
+| **Timely** | The tests were written alongside the extraction of each function. |
 
-## 3. Patrón AAA: Arrange, Act, Assert (diap. 11)
+## 3. The AAA pattern: Arrange, Act, Assert (slide 11)
 
-La presentación divide cada prueba en tres pasos:
+The presentation splits every test into three steps:
 
-- **Arrange:** preparar entradas y objetivos.
-- **Act:** ejecutar el comportamiento que se quiere probar.
-- **Assert:** comprobar el resultado esperado.
+- **Arrange:** set up inputs and targets.
+- **Act:** run the behavior being tested.
+- **Assert:** check the expected outcome.
 
-**Cómo se usa:** cada prueba tiene los comentarios `// Arrange`, `// Act` y
-`// Assert` para que se vea cada paso.
+**How it is used:** every test has `// Arrange`, `// Act` and `// Assert`
+comments so each step is visible.
 
-## 4. Funciones de Jest usadas (diap. 13)
+## 4. Jest functions used (slide 13)
 
-La diapositiva 13 presenta las funciones principales de Jest, y todas se usan
-en las pruebas:
+Slide 13 introduces Jest's core functions, and all of them are used in the
+tests:
 
-| Función (PDF) | Para qué sirve | Dónde se usa |
+| Function (PDF) | Purpose | Where it is used |
 | --- | --- | --- |
-| `describe` | Agrupa pruebas (test suite) | `describe('fetchGranos')`, `describe('SlideNavigator')`, `describe('filtro por región')` |
-| `test` / `it` | Define una prueba individual | Todas las pruebas |
-| `expect(actual)` | Recibe el valor obtenido | Todas las pruebas |
-| `.toBe(esperado)` | Compara valores simples | UT-03 |
-| Otros matchers | `.toEqual`, `.toHaveBeenCalledWith` | UT-02, UT-04 |
+| `describe` | Groups tests (test suite) | `describe('fetchGranos')`, `describe('SlideNavigator')`, `describe('filtro por región')` |
+| `test` / `it` | Defines an individual test | Every test |
+| `expect(actual)` | Takes the actual value | Every test |
+| `.toBe(expected)` | Compares simple values | UT-03 |
+| Other matchers | `.toEqual`, `.toHaveBeenCalledWith` | UT-02, UT-04 |
 
-## 5. Plan de pruebas y tipos de Arrange (diap. 13–16)
+## 5. Test plan and Arrange types (slides 13–16)
 
-La presentación explica **cuatro usos comunes del Arrange**. Cada una de las 4
-pruebas usa uno distinto:
+The presentation explains **four common uses of Arrange**. Each of the 4 tests
+uses a different one:
 
-| ID | Autor | Tipo de Arrange (PDF) | Diap. | Qué se prueba | Archivo |
+| ID | Author | Arrange type (PDF) | Slide | What is tested | File |
 | --- | --- | --- | --- | --- | --- |
-| UT-01 | Alumno | 1. Inicializar entradas y parámetros | 13 | *(la completa el alumno)* | *(la completa el alumno)* |
-| UT-02 | Con IA | 3. Configurar dependencias con mocks (inyección de dependencias) | 15 | `fetchGranos` regresa los datos del cliente HTTP | `src/utils/__tests__/granos.test.js` |
-| UT-03 | Con IA | 2. Instanciar objetos del SUT | 14 | `SlideNavigator` vuelve a la primera diapositiva después de la última | `src/utils/__tests__/SlideNavigator.test.js` |
-| UT-04 | Con IA | 4. Preparar el estado requerido | 16 | `filterByRegion` regresa solo los granos de México | `src/utils/__tests__/granos.test.js` |
+| UT-01 | Student | 1. Initializing inputs & parameters | 13 | *(to be completed by the student)* | *(to be completed by the student)* |
+| UT-02 | AI-assisted | 3. Configuring dependencies with mocks (dependency injection) | 15 | `fetchGranos` returns the HTTP client's data | `src/utils/__tests__/granos.test.js` |
+| UT-03 | AI-assisted | 2. Instantiating objects of the SUT | 14 | `SlideNavigator` wraps back to the first slide after the last one | `src/utils/__tests__/SlideNavigator.test.js` |
+| UT-04 | AI-assisted | 4. Preparing required state | 16 | `filterByRegion` returns only the beans from México | `src/utils/__tests__/granos.test.js` |
 
-### UT-01: Inicializar entradas y parámetros (diap. 13), del alumno
+### UT-01: Initializing inputs & parameters (slide 13), by the student
 
-> *Sección para completar por el alumno: función probada, entradas usadas,
-> resultado esperado y qué se tomó de la diapositiva 13.*
+> *Section to be completed by the student: function tested, inputs used,
+> expected result, and what was taken from slide 13.*
 
-### UT-02: Dependencias con mocks (diap. 15)
+### UT-02: Dependencies with mocks (slide 15)
 
-- **Qué dice el PDF:** en el Arrange se configuran las dependencias con mocks,
-  usando inyección de dependencias.
-- **Cómo se usó:** `fetchGranos` no importa axios directamente, sino que lo
-  recibe como parámetro (`httpClient`). En la app se le pasa axios; en la prueba
-  se le pasa un objeto falso creado con `jest.fn().mockResolvedValue(...)`.
-- **Qué se comprueba:** que regresa los datos del mock y que pidió
-  `/granos.json`. Esto también cumple con **Isolated** (diap. 7), porque no se
-  usa la red.
+- **What the PDF says:** in the Arrange step, dependencies are configured with
+  mocks, using dependency injection.
+- **How it was used:** `fetchGranos` does not import axios directly; it
+  receives it as a parameter (`httpClient`). The app passes in axios; the test
+  passes in a fake object created with `jest.fn().mockResolvedValue(...)`.
+- **What is checked:** that it returns the mock's data and that it requested
+  `/granos.json`. This also meets **Isolated** (slide 7), because no network
+  is used.
 
-### UT-03: Instanciar objetos del SUT (diap. 14)
+### UT-03: Instantiating objects of the SUT (slide 14)
 
-- **Qué dice el PDF:** en el Arrange se crean instancias de los objetos del
-  sistema bajo prueba.
-- **Cómo se usó:** la lógica del carrusel se convirtió en la clase
-  `SlideNavigator`. El Arrange crea `new SlideNavigator(5, 4)` (5 diapositivas,
-  empezando en la última).
-- **Qué se comprueba:** al llamar `next()` regresa a la primera (índice 0).
+- **What the PDF says:** in the Arrange step, instances of the objects of the
+  system under test are created.
+- **How it was used:** the carousel logic was turned into the `SlideNavigator`
+  class. The Arrange step creates `new SlideNavigator(5, 4)` (5 slides,
+  starting on the last one).
+- **What is checked:** calling `next()` goes back to the first slide (index 0).
 
-### UT-04: Preparar el estado requerido (diap. 16)
+### UT-04: Preparing required state (slide 16)
 
-- **Qué dice el PDF:** en el Arrange se prepara el estado necesario (base de
-  datos o entorno) antes de probar.
-- **Cómo se usó:** en lugar de una base de datos real, `beforeEach` crea un
-  catálogo de 4 granos antes de cada prueba, así cada prueba empieza con el
-  mismo estado (**Repeatable**, diap. 8).
-- **Qué se comprueba:** al filtrar por `"México"` quedan solo los granos 7 y 8.
+- **What the PDF says:** in the Arrange step, the required state (database or
+  environment) is prepared before testing.
+- **How it was used:** instead of a real database, `beforeEach` builds a
+  catalog of 4 beans before each test, so every test starts from the same
+  state (**Repeatable**, slide 8).
+- **What is checked:** filtering by `"México"` leaves only beans 7 and 8.
 
-## 6. Cómo correr las pruebas (diap. 13)
+## 6. How to run the tests (slide 13)
 
-La diapositiva 13 indica instalar Jest y ejecutar `npm test`:
+Slide 13 says to install Jest and run `npm test`:
 
 ```bash
 npm install
 npm test
 ```
 
-Para correr un solo archivo:
+To run a single file:
 
 ```bash
 npm test -- granos.test.js
 ```
 
-Como el proyecto usa módulos ES (`"type": "module"`), el script `test` ejecuta
-Jest con `--experimental-vm-modules`.
+Because the project uses ES modules (`"type": "module"`), the `test` script
+runs Jest with `--experimental-vm-modules`.
 
-## 7. Uso de IA
+## 7. Use of AI
 
-Las pruebas UT-02, UT-03 y UT-04, la extracción de funciones a `src/utils/` y
-este README se hicieron con ayuda de IA (Claude). UT-01 es del alumno.
+Tests UT-02, UT-03 and UT-04, the extraction of functions into `src/utils/`,
+and this README were made with the help of AI (Claude). UT-01 is the
+student's own work.
 
-## 8. Entrega
+## 8. Submission
 
-Antes de comprimir el proyecto, borrar la carpeta `node_modules/`, como lo
-pide la actividad (ya está excluida en `.gitignore`).
+Before zipping the project, delete the `node_modules/` folder, as the
+assignment requires (it is already excluded in `.gitignore`).
