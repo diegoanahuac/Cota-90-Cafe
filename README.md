@@ -50,17 +50,17 @@ The tests also reuse the HW06 functions: `getRegion`, `getRegions`,
 
 ## Example: the same AAA structure at both ends
 
+In every test, the three AAA steps are separated by a blank line: first the
+Arrange (inputs), then the Act (the call), then the Assert (`expect`).
+
 **Type 1 (simplest):**
 
 ```js
 test('A1-01 regresa el país de un origen', () => {
-  // Arrange
   const origin = 'Panamá – Chiriquí'
 
-  // Act
   const result = getRegion(origin)
 
-  // Assert
   expect(result).toBe('Panamá')
 })
 ```
@@ -69,13 +69,10 @@ test('A1-01 regresa el país de un origen', () => {
 
 ```js
 test('A7-03 no cobra nada si el pedido es inválido', async () => {
-  // Arrange
   const emptyOrder = []
 
-  // Act
   const promise = placeOrder(emptyOrder, paymentGateway)
 
-  // Assert
   await expect(promise).rejects.toThrow('El pedido está vacío')
   expect(paymentGateway.charge).not.toHaveBeenCalled()
 })
