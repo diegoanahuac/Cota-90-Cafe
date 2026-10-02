@@ -5,7 +5,7 @@ assignment extends the HW06 unit tests (branch `HW06-Unit-Testing-4-tests`)
 with the **assertion types of Jest**, written with the **AAA pattern**
 (Arrange, Act, Assert).
 
-The assignment asks for 6 assertion types; this project covers **7**, ordered
+The project covers the **6 assertion types** the assignment asks for, ordered
 from the simplest to the most complex. The full test plan is in
 [`UNIT_TEST_PLAN.md`](UNIT_TEST_PLAN.md).
 
@@ -16,7 +16,7 @@ An assertion is the **Assert** step of a test: `expect(actual)` followed by a
 comparison fails, Jest marks the test as FAIL. Different kinds of values need
 different matchers, which is what the assertion types are about.
 
-## The 7 assertion types
+## The 6 assertion types
 
 | # | Type | Matchers used | When to use it |
 | --- | --- | --- | --- |
@@ -26,11 +26,10 @@ different matchers, which is what the assertion types are about.
 | 4 | **Strings** | `toMatch`, `not.toMatch` | Check text against a pattern (regular expression) instead of the whole exact text. |
 | 5 | **Arrays and objects** | `toContain`, `toHaveLength`, `toEqual`, `toHaveProperty`, `toMatchObject` | Check items in a list, its size, or the fields of an object. `toEqual` compares content, not identity. |
 | 6 | **Exceptions** | `toThrow` | Check that invalid input raises an error, by type, message or pattern. The call must be wrapped in a function. |
-| 7 | **Async and mocks** | `resolves`, `rejects`, `toHaveBeenCalledTimes`, `toHaveBeenCalledWith`, `not.toHaveBeenCalled` | Check promises, and how a function used its dependencies (a fake payment gateway or HTTP client). |
 
 Each type builds on the previous ones: type 1 checks one value with one
-matcher; type 7 combines async code, mocks, exceptions and object matchers in
-the same test.
+matcher; type 6 wraps the call in a function, checks the error type and
+message, and also checks that the object's state did not change.
 
 ## New functions (system under test)
 
@@ -43,7 +42,6 @@ wholesale prices):
 | `parsePrice(price)` | Converts `"$1,250.50"` into `1250.5`; throws `TypeError` for invalid prices. |
 | `qualifiesForFreeShipping(subtotal)` | `true` when the purchase is over $500. |
 | `calculateOrderTotal(lines)` | Returns `units`, `subtotal`, `discount` (10% from 10 units), `shipping` ($99 or free) and `total`. |
-| `placeOrder(lines, paymentGateway)` | Calculates the total and charges it through the payment gateway it receives. |
 
 The tests also reuse the HW06 functions: `getRegion`, `getRegions`,
 `getIntensityBeans`, `fetchGranos`, `getChatResponse` and `SlideNavigator`.
@@ -65,16 +63,16 @@ test('A1-01 regresa el país de un origen', () => {
 })
 ```
 
-**Type 7 (most complex):**
+**Type 6 (most complex):**
 
 ```js
-test('A7-03 no cobra nada si el pedido es inválido', async () => {
-  const emptyOrder = []
+test('A6-04 una excepción no cambia el estado del carrusel', () => {
+  const navigator = new SlideNavigator(5, 2)
 
-  const promise = placeOrder(emptyOrder, paymentGateway)
+  const act = () => navigator.goTo(9)
 
-  await expect(promise).rejects.toThrow('El pedido está vacío')
-  expect(paymentGateway.charge).not.toHaveBeenCalled()
+  expect(act).toThrow(/fuera de rango/)
+  expect(navigator.current).toBe(2)
 })
 ```
 
@@ -92,8 +90,7 @@ src/utils/
         ├── 03-numbers.test.js
         ├── 04-strings.test.js
         ├── 05-arrays-objects.test.js
-        ├── 06-exceptions.test.js
-        └── 07-async-mocks.test.js
+        └── 06-exceptions.test.js
 ```
 
 ## How to run
@@ -109,7 +106,7 @@ runs Jest with `--experimental-vm-modules`.
 
 ## Use of AI
 
-The order functions in `pedido.js`, the 7 assertion test files, the test plan
+The order functions in `pedido.js`, the 6 assertion test files, the test plan
 and this README were made with the help of AI (Claude).
 
 > *How it helped (to be completed by the student):*
